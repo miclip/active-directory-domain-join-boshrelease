@@ -1,0 +1,27 @@
+---
+name: create-gmsa
+
+templates: 
+  run.ps1:     bin/run.ps1
+  env.ps1.erb: bin/env.ps1
+
+packages: []
+
+properties:
+  domain_fqdn:
+    description: Fully qualified domain name for the Active directory domain
+  domain_admin_username:
+    description: Active Directory admin user
+  domain_admin_password:
+    description: Active Directory admin password
+  domain_user_username:
+    description: New Active Directory GMSA group user's username
+  domain_user_password:
+    description: New Active Directory GMSA group user's password
+  domain_group_name:
+    description: New Active Directory GMSA group's name
+  domain_service_account_name:
+    description: New Active Directory GMSA name
+  windows_features_source:
+    description: Directory or UNC containing Windows Features sources
+    default: 'c:\windows\WinSxS'

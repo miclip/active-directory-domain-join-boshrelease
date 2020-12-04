@@ -1,0 +1,26 @@
+---
+name: join-gmsa
+
+templates: 
+  env.ps1.erb:   bin/env.ps1
+  post-deploy.ps1: bin/post-deploy.ps1
+
+packages: []
+
+properties:
+  domain_fqdn:
+    description: Fully qualified domain name for the Active directory domain
+  domain_user_username:
+    description: Active Directory admin user
+  domain_user_password:
+    description: Active Directory admin password
+  domain_group_name:
+    description: Active Directory GMSA group's name
+  domain_service_account_name:
+    description: Active Directory GMSA name
+  windows_features_source:
+    description: Directory or UNC containing Windows Features sources
+    default: 'c:\windows\WinSxS'
+  reboot_after_join:
+    description: Reboot the VM after join. You should also set `lifecycle_phase` to `post-deploy` and externally wait for the restart before deploying or running anything else.
+    default: false

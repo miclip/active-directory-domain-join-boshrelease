@@ -1,0 +1,28 @@
+---
+name: promote-domain-controller
+
+templates: 
+  env.ps1.erb:     bin/env.ps1
+  pre-start.ps1:   bin/pre-start.ps1
+
+packages: []
+
+properties:
+  domain_fqdn:
+    description: Fully qualified domain name for the Active directory domain
+  domain_admin_username:
+    description: Active Directory admin user
+  domain_admin_password:
+    description: Active Directory admin password
+  network_adapter_name:
+    description: Active Directory GMSA group's name
+    default: "Ethernet0"
+  windows_features_source:
+    description: Directory or UNC containing Windows Features sources
+    default: 'c:\windows\WinSxS'
+  run_after_reboot_ps1:
+    description: Path of powershell script to run after startup following reboot
+    default: ''
+  run_after_reboot_log:
+    description: Path of logfile for all script output
+    default: 'c:\var\vcap\sys\log\promote-domain-controller\scheduled-task.log'

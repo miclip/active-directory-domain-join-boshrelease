@@ -1,0 +1,17 @@
+---
+name: smoke-tests
+
+templates: 
+  run.ps1:     bin/run.ps1
+  env.ps1.erb: bin/env.ps1
+
+packages: []
+
+properties:
+  domain_fqdn:
+    description: Fully qualified domain name for the Active directory domain
+  domain_service_account_name:
+    description: Active Directory GMSA name
+  smoke_test_command:
+    description: Command to run `{0}` will be replaced with gmsa name. `{1}` will be replaced by domain FDQN. Command should return 0 on success.
+    default: 'c:\var\vcap\packages\docker\docker\docker.exe run --security-opt "credentialspec=file://{0}.json" --hostname "{0}" mcr.microsoft.com/windows/servercore:1809 powershell "nltest /sc_verify:{1}; klist get krbtgt; dir \\{1}\SYSVOL; Test-ComputerSecureChannel;"'
