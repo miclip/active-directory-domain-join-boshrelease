@@ -71,15 +71,6 @@ $dockerCredentialData = @{
 $dockerCredentialData | ConvertTo-Json -Depth 5 | Out-File -FilePath $dockerCredentialSpecPath -Encoding ascii
 
 if ($rebootAfterJoin -eq "true") {
-#   $services = "kubelet*"
-#   $status = "Running" # change to Stopped if you want to wait for services to start
-
-#   do 
-#   {
-#     $count = (Get-Service $services | ? {$_.status -eq $status}).count
-#     sleep -Milliseconds 600
-#    } until ($count -eq 1 ) 
-
     # Set bosh-agent to start automatically
     Set-Service bosh-agent -StartupType Automatic
     Set-Service bosh-dns-windows -StartupType Automatic
